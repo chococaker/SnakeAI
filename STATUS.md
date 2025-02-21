@@ -1,7 +1,7 @@
 Current Speeds for Various Methods  
   
-Snakeboard: -DeepClone(x100000 start position): ~100ms  
-            -DeepClone(x100000 length 80): ~ ms  
+Snakeboard: -DeepClone(x100000 start position): ~108ms  
+            -DeepClone(x100000 length 80): ~90ms  
             -DoTick(x1000 start position): ?ms  
             -DoTick(x1000 length 80): ?ms  
   
