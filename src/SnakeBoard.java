@@ -1,5 +1,5 @@
 // class for a snakeboard
-class SnakeBoard {
+public class SnakeBoard {
 	// gameboard + body
 	// 0 = empty 1 = apple 2 = body 3 = head
 	// body in form [x][y] with a head and tail pointer
