@@ -17,6 +17,7 @@ public class SpeedTester {
           if(!board.doTick(lengthAdvancer.iterDSolve(10), false)) {
               System.out.println(board.score);
               board = new SnakeBoard();
+              lengthAdvancer = new Node(board);
           }
       }
       long startTime = System.nanoTime();
