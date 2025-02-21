@@ -1,4 +1,4 @@
-class Node {
+public class Node {
     SnakeBoard board;
     public Node(SnakeBoard b) {
         board = b;
