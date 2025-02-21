@@ -15,7 +15,7 @@ public class Node {
             curDepth += curDepth/8+1;
             end = System.nanoTime();
         }
-        System.out.println(curDepth-1);
+        //System.out.println(curDepth-1);
         return curMove;
     }
 
