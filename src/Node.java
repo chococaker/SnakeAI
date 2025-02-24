@@ -1,9 +1,11 @@
+// class for a node in the tree search
 public class Node {
+    // each node linked to a board
     SnakeBoard board;
     public Node(SnakeBoard b) {
         board = b;
     }
-     // iterative deepening for time managament
+     // iterative deepening for time management
     // finishes layer after time is exceeded
     public int iterDSolve(long timeMS) {
         long start = System.nanoTime();
@@ -18,18 +20,20 @@ public class Node {
         //System.out.println(curDepth-1);
         return curMove;
     }
-
+    // performs a tree search for a given depth
     public int getBestMove(int depth) {
         int curScore;
         int bestScore = -1;
         int bestMove = 0;
         int dSkip = -1;
+        // skips direction behind head
         switch(this.board.direction) {
             case 0: dSkip = 2; break;
             case 1: dSkip = 3; break;
             case 2: dSkip = 0; break;
             case 3: dSkip = 1; break;
         }
+        // calculates each possible branch and sets bestMove to the one with highest evaluation
         for(int i = 0; i < 4; i++) {
             if(i == dSkip) continue;
             Node child = new Node(this.board.deepClone());
@@ -77,12 +81,5 @@ public class Node {
             }
         }
         return bestScore+n.board.score;
-    }
-    // returns value in ms
-    public int speedTest(int depth) {
-        long startTime = System.nanoTime();
-        getBestMove(depth);
-        long endTime = System.nanoTime();
-        return (int)((endTime-startTime) / 1000000);
     }
 }
