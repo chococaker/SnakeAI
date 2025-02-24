@@ -10,22 +10,6 @@ public class SpeedTester {
       }
       return System.nanoTime()-startTime;
   }
-  public long deepCloneE() {
-      SnakeBoard board = new SnakeBoard();
-      Node lengthAdvancer = new Node(board);
-      while(board.score < 80) {
-          if(!board.doTick(lengthAdvancer.iterDSolve(10), false)) {
-              board = new SnakeBoard();
-              lengthAdvancer = new Node(board);
-          }
-      }
-      SnakeBoard temp;
-      long startTime = System.nanoTime();
-      for(int i = 0; i < 1000000; i++) {
-          temp = board.deepClone();
-      }
-      return System.nanoTime()-startTime;
-  }
   public long doTickS() {
       SnakeBoard board = new SnakeBoard();
       SnakeBoard temp;
@@ -40,13 +24,46 @@ public class SpeedTester {
       }
       return totalTime + (System.nanoTime()-startTime);
   }
-  public long doTickA() {
+  public long doTickE() {
       SnakeBoard board = new SnakeBoard();
-      Node advancer = new Node(board);
-      for(int i = 0; i < 6; i++) board.doTick(advancer.getBestMove(10), false);
-      return board.score;
+      Node lengthAdvancer = new Node(board);
+      while(board.score < 80) {
+          if(!board.doTick(lengthAdvancer.iterDSolve(10), false)) {
+              board = new SnakeBoard();
+              lengthAdvancer = new Node(board);
+          }
+      }
+      SnakeBoard temp;
+      long totalTime = 0;
+      long startTime = System.nanoTime();
+      long startTime2;
+      for(int i = 0; i < 1000000; i++) {
+          startTime2 = System.nanoTime();
+          temp = board.deepClone();
+          totalTime += startTime2-System.nanoTime();
+          temp.doTick(1, true);
+      }
+      return totalTime + (System.nanoTime()-startTime);
   }
-  //public long doTickE() {}
-  //public long getBestMoveS() {}
-  //public long getBestMoveE() {}
+  public long getBestMoveS() {
+      SnakeBoard board = new SnakeBoard();
+      Node test = new Node(board);
+      long startTime = System.nanoTime();
+      test.getBestMove(17);
+      return System.nanoTime()-startTime;
+  }
+  public long getBestMoveE() {
+      SnakeBoard board = new SnakeBoard();
+      Node lengthAdvancer = new Node(board);
+      while(board.score < 80) {
+          if(!board.doTick(lengthAdvancer.iterDSolve(10), false)) {
+              board = new SnakeBoard();
+              lengthAdvancer = new Node(board);
+          }
+      }
+      Node test = new Node(board);
+      long startTime = System.nanoTime();
+      test.getBestMove(70);
+      return System.nanoTime()-startTime;
+  }
 }
