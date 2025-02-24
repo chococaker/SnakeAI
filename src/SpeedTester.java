@@ -40,7 +40,12 @@ public class SpeedTester {
       }
       return totalTime + (System.nanoTime()-startTime);
   }
-  //public long doTickA() {}
+  public long doTickA() {
+      SnakeBoard board = new SnakeBoard();
+      Node advancer = new Node(board);
+      for(int i = 0; i < 6; i++) board.doTick(advancer.getBestMove(10), false);
+      return board.score;
+  }
   //public long doTickE() {}
   //public long getBestMoveS() {}
   //public long getBestMoveE() {}
