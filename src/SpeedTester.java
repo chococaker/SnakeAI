@@ -1,7 +1,7 @@
-public class SpeedTester {
-  public SpeedTester() {}
+public final class SpeedTester {
+  private SpeedTester() {}
   
-  public long deepCloneS() {
+  public static long deepCloneS() {
       SnakeBoard board = new SnakeBoard();
       SnakeBoard temp;
       long startTime = System.nanoTime();
@@ -10,7 +10,7 @@ public class SpeedTester {
       }
       return System.nanoTime()-startTime;
   }
-  public long doTickS() {
+  public static long doTickS() {
       SnakeBoard board = new SnakeBoard();
       SnakeBoard temp;
       long totalTime = 0;
@@ -24,7 +24,7 @@ public class SpeedTester {
       }
       return totalTime + (System.nanoTime()-startTime);
   }
-  public long doTickE() {
+  public static long doTickE() {
       SnakeBoard board = new SnakeBoard();
       Node lengthAdvancer = new Node(board);
       while(board.score < 80) {
@@ -45,14 +45,14 @@ public class SpeedTester {
       }
       return totalTime + (System.nanoTime()-startTime);
   }
-  public long getBestMoveS() {
+  public static long getBestMoveS() {
       SnakeBoard board = new SnakeBoard();
       Node test = new Node(board);
       long startTime = System.nanoTime();
       test.getBestMove(17);
       return System.nanoTime()-startTime;
   }
-  public long getBestMoveE() {
+  public static long getBestMoveE() {
       SnakeBoard board = new SnakeBoard();
       Node lengthAdvancer = new Node(board);
       while(board.score < 80) {
